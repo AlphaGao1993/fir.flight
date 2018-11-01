@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.EditText;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.ryanhoo.firFlight.R;
 import io.github.ryanhoo.firFlight.ui.base.BaseActivity;
@@ -36,12 +36,12 @@ public class SignInActivity extends BaseActivity implements SignInContract.View 
 
     private static final String REG_EMAIL = ".+@.+\\..+";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.edit_text_email)
+    @BindView(R.id.edit_text_email)
     EditText editTextEmail;
-    @Bind(R.id.edit_text_password)
+    @BindView(R.id.edit_text_password)
     EditText editTextPassword;
 
     MenuItem menuItemSignIn;

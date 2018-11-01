@@ -11,7 +11,7 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.bumptech.glide.Glide;
@@ -36,15 +36,15 @@ import io.github.ryanhoo.firFlight.ui.setting.SettingsActivity;
  */
 public class ProfileFragment extends BaseFragment implements ProfileContract.View {
 
-    @Bind(R.id.image_view_avatar)
+    @BindView(R.id.image_view_avatar)
     ImageView imageView;
-    @Bind(R.id.text_view_user)
+    @BindView(R.id.text_view_user)
     TextView textViewUser;
-    @Bind(R.id.text_view_email)
+    @BindView(R.id.text_view_email)
     TextView textViewEmail;
-    @Bind(R.id.text_view_api_token)
+    @BindView(R.id.text_view_api_token)
     TextView textViewApiToken;
-    @Bind(R.id.button_refresh)
+    @BindView(R.id.button_refresh)
     Button buttonRefresh;
 
     ProfileContract.Presenter mPresenter;

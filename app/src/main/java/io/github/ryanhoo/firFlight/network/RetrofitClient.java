@@ -32,7 +32,7 @@ public class RetrofitClient {
                 .build();
     }
 
-    public static OkHttpClient defaultOkHttpClient() {
+    private static OkHttpClient defaultOkHttpClient() {
         return new OkHttpClient.Builder()
                 .addNetworkInterceptor(new SessionInterceptor())
                 .addNetworkInterceptor(new StethoInterceptor())
@@ -41,7 +41,7 @@ public class RetrofitClient {
                 .build();
     }
 
-    public static Gson defaultGson() {
+    private static Gson defaultGson() {
         return new GsonBuilder()
                 .registerTypeAdapter(Date.class, new DateDeserializer())
                 .registerTypeAdapter(IMessageContent.class, new MessageContentDeserializer())

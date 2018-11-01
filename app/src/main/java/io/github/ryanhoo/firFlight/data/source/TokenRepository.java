@@ -17,8 +17,8 @@ public class TokenRepository implements TokenContract {
 
     private static TokenRepository sInstance;
 
-    TokenContract.Local mLocalDataSource;
-    TokenContract.Remote mRemoteDataSource;
+    private TokenContract.Local mLocalDataSource;
+    private TokenContract.Remote mRemoteDataSource;
 
     private TokenRepository() {
         mLocalDataSource = new LocalTokenDataSource(Injection.provideContext());

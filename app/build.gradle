@@ -90,17 +90,6 @@ android {
         }
     }
 
-    productFlavors {
-        develop {
-            applicationId 'io.github.ryanhoo.firFlight.dev'
-        }
-
-        // fir
-        // GooglePlay
-        // WanDouJia
-        // YingYongBao
-    }
-
     productFlavors.all { flavor ->
         manifestPlaceholders.put('flightFlavorName', flavor.name)
         // Unnecessary, there already has a FLAVOR in BuildConfig
@@ -113,38 +102,39 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testCompile libs.junit
+    testImplementation libs.junit
 
-    compile libs.support_v4
-    compile libs.appcompat_v7
-    compile libs.material_design
-    compile libs.recyclerview_v7
-    compile libs.cardview_v7
-    compile libs.customtabs
+    implementation libs.support_v4
+    implementation libs.appcompat_v7
+    implementation libs.material_design
+    implementation libs.recyclerview_v7
+    implementation libs.cardview_v7
+    implementation libs.customtabs
 
-    compile libs.rxjava
-    compile libs.rxandroid
+    implementation libs.rxjava
+    implementation libs.rxandroid
 
-    compile libs.glide
+    implementation libs.glide
 
-    compile libs.butterknife
+    implementation libs.butterknife
+    annotationProcessor libs.butterknifeProcessor
 
-    compile libs.gson
+    implementation libs.gson
 
-    compile libs.retrofit2
-    compile libs.retrofit2GsonConverter
-    compile libs.retrofit2RxJavaAdapter
+    implementation libs.retrofit2
+    implementation libs.retrofit2GsonConverter
+    implementation libs.retrofit2RxJavaAdapter
 
-    compile libs.sqlbrite
+    implementation libs.sqlbrite
 
-    compile(libs.crashlytics) { transitive = true; }
-    compile(libs.answers) { transitive = true; }
+    implementation(libs.crashlytics) { transitive = true; }
+    implementation(libs.answers) { transitive = true; }
 
-    compile libs.stetho
-    compile libs.stetho_okhttp
-    compile libs.stetho_jsconsole
+    implementation libs.stetho
+    implementation libs.stetho_okhttp
+    implementation libs.stetho_jsconsole
 
-    compile libs.calligraphy
+    implementation libs.calligraphy
 }

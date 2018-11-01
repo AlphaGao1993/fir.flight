@@ -9,11 +9,11 @@ import io.github.ryanhoo.firFlight.data.source.remote.api.RESTFulApiService;
  * Time: 12:45 AM
  * Desc: AbstractRemoteDataSource
  */
-public abstract class AbstractRemoteDataSource {
+abstract class AbstractRemoteDataSource {
 
-    protected RESTFulApiService mApi;
+    RESTFulApiService mApi;
 
-    public AbstractRemoteDataSource(RESTFulApiService api) {
+    AbstractRemoteDataSource(RESTFulApiService api) {
         mApi = api;
     }
 }

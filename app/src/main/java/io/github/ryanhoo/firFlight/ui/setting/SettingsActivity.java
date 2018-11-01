@@ -7,7 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.bumptech.glide.Glide;
@@ -23,11 +23,11 @@ import io.github.ryanhoo.firFlight.ui.base.BaseActivity;
  */
 public class SettingsActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.text_view_image_cache)
+    @BindView(R.id.text_view_image_cache)
     TextView textViewImageCache;
-    @Bind(R.id.text_view_version)
+    @BindView(R.id.text_view_version)
     TextView textViewVersion;
 
     @Override

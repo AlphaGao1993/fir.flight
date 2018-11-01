@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="io.github.ryanhoo.firFlight">
+    package="io.github.ryanhoo.firFlight">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -19,16 +19,16 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/ff.app.name"
+        android:name=".FlightApplication"
         android:supportsRtl="false"
-        android:theme="@style/FFTheme"
-        android:name=".FlightApplication">
+        android:theme="@style/FFTheme">
         <activity
-            android:name=".ui.SplashScreenActivity"
-            android:theme="@style/FFTheme.Splash"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:label="@string/ff.app.name"
             android:launchMode="singleTop"
-            android:label="@string/ff.app.name">
+            android:name=".ui.SplashScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FFTheme.Splash"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -36,37 +36,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/FFTheme.Main"
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/FFTheme.Main"
             />
         <activity
             android:name=".ui.webview.WebViewActivity"
-            android:theme="@style/FFTheme.WebView"
             android:screenOrientation="portrait"
+            android:theme="@style/FFTheme.WebView"
             />
         <activity
-            android:name=".ui.signin.SignInActivity"
             android:launchMode="singleTask"
+            android:name=".ui.signin.SignInActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FFTheme.SignIn"
             android:windowSoftInputMode="adjustResize|stateAlwaysVisible"
-            android:screenOrientation="portrait"
             />
         <activity
-            android:name=".ui.setting.SettingsActivity"
             android:label="@string/ff.settings"
+            android:name=".ui.setting.SettingsActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
-            android:name=".ui.about.AboutActivity"
             android:label="@string/ff.about"
+            android:name=".ui.about.AboutActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".ui.about.AcknowledgementsActivity"
             android:label="@string/ff.acknowledgements"
+            android:name=".ui.about.AcknowledgementsActivity"
             android:screenOrientation="portrait"
             />
 
@@ -89,20 +89,16 @@
         </receiver>
 
         <service
-            android:name=".service.FlightService"
-            android:exported="false"/>
+            android:exported="false"
+            android:name=".service.FlightService"/>
 
         <meta-data
             android:name="io.github.ryanhoo.firFlight.GlideConfiguration"
             android:value="GlideModule"/>
 
-        <!--<meta-data-->
-            <!--android:name="io.fabric.ApiKey"-->
-            <!--android:value="${fabricApiKey}" />-->
-
         <meta-data
-            android:name="FLIGHT_FLAVOR_NAME"
-            android:value="${flightFlavorName}"/>
+            android:name="io.fabric.ApiKey"
+            android:value="9928462b48c2b7ec9230fb8b9ce9567e6f21803a"/>
     </application>
 
 </manifest>

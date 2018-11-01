@@ -8,7 +8,7 @@ import android.text.Spanned;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.ryanhoo.firFlight.R;
 import io.github.ryanhoo.firFlight.data.model.Message;
@@ -30,9 +30,9 @@ import java.util.Locale;
 public class MessageItemView extends RelativeLayout implements IAdapterView<Message> {
     private static final String DATE_FORMATTER = "yyyy-MM-dd HH:mm";
 
-    @Bind(R.id.text_view_message)
+    @BindView(R.id.text_view_message)
     TextView textViewMessage;
-    @Bind(R.id.text_view_time)
+    @BindView(R.id.text_view_time)
     TextView textViewTime;
 
     private SimpleDateFormat mDateFormatter;

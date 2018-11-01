@@ -21,8 +21,8 @@ public class AppRepository implements AppContract {
 
     private static AppRepository sInstance;
 
-    AppContract.Local mLocalDataSource;
-    AppContract.Remote mRemoteDataSource;
+    private AppContract.Local mLocalDataSource;
+    private AppContract.Remote mRemoteDataSource;
 
     private AppRepository() {
         mLocalDataSource = new LocalAppDataSource(Injection.provideContext());

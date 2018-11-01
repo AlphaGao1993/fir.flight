@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import io.github.ryanhoo.firFlight.R;
@@ -26,19 +26,19 @@ import io.github.ryanhoo.firFlight.ui.common.widget.CharacterDrawable;
 public class AppItemView extends RelativeLayout implements IAdapterView<App> {
 
     Context mContext;
-    @Bind(R.id.image_view_icon)
+    @BindView(R.id.image_view_icon)
     ImageView imageView;
-    @Bind(R.id.text_view_name)
+    @BindView(R.id.text_view_name)
     TextView textViewName;
-    @Bind(R.id.text_view_local_version)
+    @BindView(R.id.text_view_local_version)
     TextView textViewLocalVersion;
-    @Bind(R.id.text_view_version)
+    @BindView(R.id.text_view_version)
     TextView textViewVersion;
-    @Bind(R.id.text_view_bundle_id)
+    @BindView(R.id.text_view_bundle_id)
     TextView textViewBundleId;
-    @Bind(R.id.button_action)
+    @BindView(R.id.button_action)
     Button buttonAction;
-    @Bind(R.id.layout_ios_badge)
+    @BindView(R.id.layout_ios_badge)
     View layoutIOSBadge;
 
     AppInfo appInfo;

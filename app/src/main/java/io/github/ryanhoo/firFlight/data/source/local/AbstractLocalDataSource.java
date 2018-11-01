@@ -17,10 +17,10 @@ import rx.schedulers.Schedulers;
  */
 public abstract class AbstractLocalDataSource<T extends BaseTable> {
 
-    protected T mTable;
-    protected BriteDatabase mDatabaseHelper;
+    T mTable;
+    BriteDatabase mDatabaseHelper;
 
-    public AbstractLocalDataSource(Context context) {
+    AbstractLocalDataSource(Context context) {
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
         SqlBrite sqlBrite = SqlBrite.create();
         mDatabaseHelper = sqlBrite.wrapDatabaseHelper(databaseHelper, Schedulers.io());

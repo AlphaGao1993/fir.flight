@@ -22,10 +22,10 @@ public class SignInPresenter implements SignInContract.Presenter {
 
     private static final String TAG = "SignInPresenter";
 
-    SignInContract.View mView;
-    CompositeSubscription mSubscriptions;
+    private SignInContract.View mView;
+    private CompositeSubscription mSubscriptions;
 
-    public SignInPresenter(SignInContract.View view) {
+    SignInPresenter(SignInContract.View view) {
         mView = view;
         mView.setPresenter(this);
         mSubscriptions = new CompositeSubscription();

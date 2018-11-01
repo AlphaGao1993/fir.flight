@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.ryanhoo.firFlight.BuildConfig;
@@ -32,11 +32,11 @@ public class AboutActivity extends BaseActivity {
     private final static String URL_FIR_IM = "http://fir.im";
     private final static String URL_AUTHOR = "https://ryanhoo.github.io";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.text_view_app_version)
+    @BindView(R.id.text_view_app_version)
     TextView textViewViewVersion;
-    @Bind(R.id.text_view_flavor_name)
+    @BindView(R.id.text_view_flavor_name)
     TextView textViewFlavorName;
 
     @Override

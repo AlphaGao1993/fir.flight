@@ -14,7 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.ryanhoo.firFlight.R;
 import io.github.ryanhoo.firFlight.account.UserSession;
@@ -34,9 +34,9 @@ public class SplashScreenActivity extends BaseActivity {
     final long ANIMATION_DURATION = 1000;
     final long SIGNED_IN_DELAY = 2500;
 
-    @Bind(R.id.text_view_app_name)
+    @BindView(R.id.text_view_app_name)
     TextView textViewAppName;
-    @Bind(R.id.text_view_slogan)
+    @BindView(R.id.text_view_slogan)
     TextView textViewSlogan;
 
     Handler mHandler;

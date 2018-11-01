@@ -7,7 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -44,9 +44,9 @@ public class AcknowledgementsActivity extends BaseActivity implements Acknowledg
     private static final String DATA_PATH = "thirdparty/list.json";
     private static final String LICENSE_PATH = "thirdparty/";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
     FlightDialog mProgressDialog;

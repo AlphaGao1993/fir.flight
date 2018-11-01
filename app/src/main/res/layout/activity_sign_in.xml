@@ -11,17 +11,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
         android:background="@color/ff.transparent"
+        android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         toolbar:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:orientation="vertical"
         >
 
         <TextView
@@ -29,28 +29,28 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/ff.padding.large"
             android:paddingRight="@dimen/ff.padding.large"
-            android:typeface="monospace"
+            android:text="@string/ff.signin.email.hint"
             android:textColor="#EAFFFFFF"
             android:textSize="14sp"
-            android:text="@string/ff.signin.email.hint"
+            android:typeface="monospace"
             />
 
         <EditText
             android:id="@+id/edit_text_email"
+            fontPath="@string/ff.font.roboto.monospace.regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/ff.padding.large"
-            android:paddingRight="@dimen/ff.padding.large"
             android:paddingTop="@dimen/ff.padding.normal"
             android:paddingBottom="@dimen/ff.padding.normal"
-            android:textSize="20sp"
+            android:paddingLeft="@dimen/ff.padding.large"
+            android:paddingRight="@dimen/ff.padding.large"
+            android:background="@color/ff.transparent"
+            android:fontFamily="monospace"
+            android:hint="@string/ff.signin.email.example"
+            android:inputType="textEmailAddress"
             android:textColor="#EAFFFFFF"
             android:textColorHint="#6AFFFFFF"
-            android:background="@color/ff.transparent"
-            android:inputType="textEmailAddress"
-            android:hint="@string/ff.signin.email.example"
-            android:fontFamily="monospace"
-            fontPath="@string/ff.font.roboto.monospace.regular"
+            android:textSize="20sp"
             tools:ignore="MissingPrefix"/>
 
         <TextView
@@ -58,28 +58,28 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/ff.padding.large"
             android:paddingRight="@dimen/ff.padding.large"
-            android:typeface="monospace"
+            android:text="@string/ff.signin.password.hint"
             android:textColor="#EAFFFFFF"
             android:textSize="14sp"
-            android:text="@string/ff.signin.password.hint"
+            android:typeface="monospace"
             />
 
         <EditText
             android:id="@+id/edit_text_password"
+            fontPath="@string/ff.font.roboto.monospace.regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/ff.padding.large"
-            android:paddingRight="@dimen/ff.padding.large"
             android:paddingTop="@dimen/ff.padding.normal"
             android:paddingBottom="@dimen/ff.padding.normal"
-            android:textSize="20sp"
+            android:paddingLeft="@dimen/ff.padding.large"
+            android:paddingRight="@dimen/ff.padding.large"
+            android:background="@color/ff.transparent"
+            android:fontFamily="monospace"
+            android:hint="@string/ff.signin.password.example"
+            android:inputType="textPassword"
             android:textColor="#EAFFFFFF"
             android:textColorHint="#6AFFFFFF"
-            android:background="@color/ff.transparent"
-            android:inputType="textPassword"
-            android:hint="@string/ff.signin.password.example"
-            android:fontFamily="monospace"
-            fontPath="@string/ff.font.roboto.monospace.regular"
+            android:textSize="20sp"
             tools:ignore="MissingPrefix"
             />
 
@@ -88,8 +88,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/ff.padding.large"
         android:layout_alignParentBottom="true"
+        android:padding="@dimen/ff.padding.large"
         android:textColor="#ECFFFFFF"
         android:textSize="@dimen/ff.textSize.tips"
         android:visibility="gone"

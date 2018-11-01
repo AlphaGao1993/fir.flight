@@ -1,5 +1,11 @@
 package io.github.ryanhoo.firFlight.analytics;
 
+import static io.github.ryanhoo.firFlight.analytics.FlightEvent.EVENT_OPEN_APP;
+import static io.github.ryanhoo.firFlight.analytics.FlightEvent.KEY_EMAIL;
+import static io.github.ryanhoo.firFlight.analytics.FlightEvent.KEY_FLAVOR;
+import static io.github.ryanhoo.firFlight.analytics.FlightEvent.KEY_ID;
+import static io.github.ryanhoo.firFlight.analytics.FlightEvent.KEY_NAME;
+
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -10,23 +16,16 @@ import io.github.ryanhoo.firFlight.BuildConfig;
 import io.github.ryanhoo.firFlight.account.UserSession;
 import io.github.ryanhoo.firFlight.data.model.User;
 
-import static io.github.ryanhoo.firFlight.analytics.FlightEvent.*;
-
 /**
- * Created with Android Studio.
- * User: ryan.hoo.j@gmail.com
- * Date: 4/1/16
- * Time: 6:11 PM
- * Desc: FlightAnalytics
- * - Crash reports
- * - Event analysis
+ * Created with Android Studio. User: ryan.hoo.j@gmail.com Date: 4/1/16 Time: 6:11 PM Desc:
+ * FlightAnalytics - Crash reports - Event analysis
  */
 public class FlightAnalytics {
 
     private static final String TAG = "FlightAnalytics";
 
     public static boolean isEnabled() {
-        return BuildConfig.FABRIC_ENABLED;
+        return !BuildConfig.DEBUG;
     }
 
     /**
@@ -42,14 +41,16 @@ public class FlightAnalytics {
      * </pre>
      */
     public static void init(Application application) {
-        if (!isEnabled()) return;
+        if (!isEnabled()) {
+            return;
+        }
 
         Context appContext = application.getApplicationContext();
         // Fabric: Crashlytics, Answers
         final Fabric fabric = new Fabric.Builder(appContext)
-                .kits(new Crashlytics(), new Answers())
-                .debuggable(BuildConfig.DEBUG)
-                .build();
+            .kits(new Crashlytics(), new Answers())
+            .debuggable(BuildConfig.DEBUG)
+            .build();
         Fabric.with(fabric);
 
         configFlavor();
@@ -69,13 +70,17 @@ public class FlightAnalytics {
     }
 
     private static void configFlavor() {
-        if (!isEnabled()) return;
+        if (!isEnabled()) {
+            return;
+        }
 
         Crashlytics.setString(KEY_FLAVOR, BuildConfig.FLAVOR);
     }
 
     public static void configUserSession(UserSession userSession) {
-        if (!isEnabled()) return;
+        if (!isEnabled()) {
+            return;
+        }
 
         // TODO tokens are sensitive information, better get permission from users
         // Default shouldn't post tokens on server, but users can choose to open it in Settings
@@ -100,7 +105,9 @@ public class FlightAnalytics {
     }
 
     public static void onEvent(FlightEvent event) {
-        if (!isEnabled()) return;
+        if (!isEnabled()) {
+            return;
+        }
 
         Answers.getInstance().logCustom(event);
     }
