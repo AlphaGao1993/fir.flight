@@ -61,6 +61,7 @@ android {
     }
 
     lintOptions {
+        disable 'GoogleAppIndexingWarning'
         disable 'InvalidPackage'
         abortOnError false
     }

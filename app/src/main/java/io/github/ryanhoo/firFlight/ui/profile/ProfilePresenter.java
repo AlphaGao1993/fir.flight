@@ -1,11 +1,9 @@
 package io.github.ryanhoo.firFlight.ui.profile;
 
-import android.util.Log;
 import io.github.ryanhoo.firFlight.account.UserSession;
 import io.github.ryanhoo.firFlight.data.model.Token;
 import io.github.ryanhoo.firFlight.data.model.User;
 import io.github.ryanhoo.firFlight.network.NetworkSubscriber;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
