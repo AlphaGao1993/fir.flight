@@ -26,11 +26,8 @@ import io.github.ryanhoo.firFlight.ui.main.MainActivity;
 import retrofit2.adapter.rxjava.HttpException;
 
 /**
- * Created with Android Studio.
- * User: ryan.hoo.j@gmail.com
- * Date: 4/3/16
- * Time: 12:49 AM
- * Desc: SignInActivity
+ * Created with Android Studio. User: ryan.hoo.j@gmail.com Date: 4/3/16 Time: 12:49 AM Desc:
+ * SignInActivity
  */
 public class SignInActivity extends BaseActivity implements SignInContract.View {
 
@@ -73,6 +70,14 @@ public class SignInActivity extends BaseActivity implements SignInContract.View 
         mProgressDialog = FlightDialog.defaultLoadingDialog(this);
 
         new SignInPresenter(this).subscribe();
+
+        editTextEmail.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                editTextEmail.setText(getString(R.string.default_mail));
+                editTextPassword.setText(getString(R.string.default_pwd));
+            }
+        }, 200);
     }
 
     @Override
@@ -91,8 +96,8 @@ public class SignInActivity extends BaseActivity implements SignInContract.View 
         Window window = getWindow();
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setColors(new int[]{
-                ContextCompat.getColor(this, R.color.ff_signin_gradientColor),
-                ContextCompat.getColor(this, R.color.ff_signin_background)
+            ContextCompat.getColor(this, R.color.ff_signin_gradientColor),
+            ContextCompat.getColor(this, R.color.ff_signin_background)
         });
         gradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
         gradientDrawable.setGradientRadius(screenHeight);
@@ -179,8 +184,8 @@ public class SignInActivity extends BaseActivity implements SignInContract.View 
             }
         }
         new FlightToast.Builder(SignInActivity.this)
-                .message(errorMessage)
-                .show();
+            .message(errorMessage)
+            .show();
     }
 
     @Override
