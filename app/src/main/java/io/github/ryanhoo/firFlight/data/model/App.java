@@ -47,10 +47,6 @@ public class App implements Parcelable {
         // Empty Constructor
     }
 
-    protected App(Parcel in) {
-        readFromParcel(in);
-    }
-
     @SerializedName("id")
     private String id;
 
@@ -75,13 +71,22 @@ public class App implements Parcelable {
     @SerializedName("created_at")
     private Date createdAt;
 
+    @SerializedName("updated_at")
+    private Date updatedAt;
+
     @SerializedName("icon_url")
     private String iconUrl;
 
     @SerializedName("master_release")
     private Release masterRelease;
 
-    // Getter & Setter
+    public static String getTypeAndroid() {
+        return TYPE_ANDROID;
+    }
+
+    public static String getTypeIos() {
+        return TYPE_IOS;
+    }
 
     public String getId() {
         return id;
@@ -123,14 +128,6 @@ public class App implements Parcelable {
         this.bundleId = bundleId;
     }
 
-    public String getCustomMarketUrl() {
-        return customMarketUrl;
-    }
-
-    public void setCustomMarketUrl(String customMarketUrl) {
-        this.customMarketUrl = customMarketUrl;
-    }
-
     public String getShortUrl() {
         return shortUrl;
     }
@@ -139,12 +136,28 @@ public class App implements Parcelable {
         this.shortUrl = shortUrl;
     }
 
+    public String getCustomMarketUrl() {
+        return customMarketUrl;
+    }
+
+    public void setCustomMarketUrl(String customMarketUrl) {
+        this.customMarketUrl = customMarketUrl;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getIconUrl() {
@@ -177,16 +190,13 @@ public class App implements Parcelable {
         dest.writeString(this.bundleId);
         dest.writeString(this.shortUrl);
         dest.writeString(this.customMarketUrl);
-        long tempTime = -1;
-        if (this.createdAt != null) {
-            tempTime = this.createdAt.getTime();
-        }
-        dest.writeLong(tempTime);
+        dest.writeLong(this.createdAt != null ? this.createdAt.getTime() : -1);
+        dest.writeLong(this.updatedAt != null ? this.updatedAt.getTime() : -1);
         dest.writeString(this.iconUrl);
-        dest.writeParcelable(this.masterRelease, 0);
+        dest.writeParcelable(this.masterRelease, flags);
     }
 
-    private void readFromParcel(Parcel in) {
+    protected App(Parcel in) {
         this.id = in.readString();
         this.userId = in.readString();
         this.type = in.readString();
@@ -194,19 +204,21 @@ public class App implements Parcelable {
         this.bundleId = in.readString();
         this.shortUrl = in.readString();
         this.customMarketUrl = in.readString();
-        long tempTime = in.readLong();
-        if (tempTime != -1) {
-            this.createdAt = new Date(tempTime);
-        }
+        long tmpCreatedAt = in.readLong();
+        this.createdAt = tmpCreatedAt == -1 ? null : new Date(tmpCreatedAt);
+        long tmpUpdatedAt = in.readLong();
+        this.updatedAt = tmpUpdatedAt == -1 ? null : new Date(tmpUpdatedAt);
         this.iconUrl = in.readString();
         this.masterRelease = in.readParcelable(Release.class.getClassLoader());
     }
 
     public static final Creator<App> CREATOR = new Creator<App>() {
+        @Override
         public App createFromParcel(Parcel source) {
             return new App(source);
         }
 
+        @Override
         public App[] newArray(int size) {
             return new App[size];
         }

@@ -10,17 +10,13 @@ import io.github.ryanhoo.firFlight.R;
 import io.github.ryanhoo.firFlight.data.model.App;
 import io.github.ryanhoo.firFlight.ui.common.adapter.ListAdapter;
 import io.github.ryanhoo.firFlight.ui.common.adapter.OnItemClickListener;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created with Android Studio.
- * User: ryan.hoo.j@gmail.com
- * Date: 8/21/16
- * Time: 10:48 PM
- * Desc: AppAdapterV2
+ * Created with Android Studio. User: ryan.hoo.j@gmail.com Date: 8/21/16 Time: 10:48 PM Desc:
+ * AppAdapterV2
  */
 /* package */ class AppAdapter extends ListAdapter<App, AppItemView> {
 
@@ -37,6 +33,7 @@ import java.util.Map;
         return new AppItemView(context);
     }
 
+    @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final RecyclerView.ViewHolder holder = super.onCreateViewHolder(parent, viewType);
@@ -61,15 +58,17 @@ import java.util.Map;
             AppItemView itemView = (AppItemView) holder.itemView;
 
             if (mTasks.containsKey(app.getId())) {
-                AppDownloadTask.DownloadInfo downloadInfo = mTasks.get(app.getId()).getDownloadInfo();
+                AppDownloadTask.DownloadInfo downloadInfo = mTasks.get(app.getId())
+                    .getDownloadInfo();
                 // Has downloading task, show progress
-                itemView.buttonAction.setText(String.format("%d%%", (int) (downloadInfo.progress * 100)));
+                itemView.buttonAction
+                    .setText(String.format("%d%%", (int) (downloadInfo.progress * 100)));
                 itemView.buttonAction.setEnabled(false);
             } else {
                 itemView.buttonAction.setEnabled(true);
                 itemView.buttonAction.setText(!itemView.appInfo.isInstalled
-                        ? R.string.ff_apps_install
-                        : itemView.appInfo.isUpToDate ? R.string.ff_apps_open : R.string.ff_apps_update
+                    ? R.string.ff_apps_install
+                    : itemView.appInfo.isUpToDate ? R.string.ff_apps_open : R.string.ff_apps_update
                 );
             }
         }
@@ -84,11 +83,12 @@ import java.util.Map;
     }
 
     @SuppressLint("DefaultLocale")
-    /* package */ void onButtonProgress(@NonNull AppItemView appItemView) {
+        /* package */ void onButtonProgress(@NonNull AppItemView appItemView) {
         App app = appItemView.appInfo.app;
         if (mTasks.containsKey(app.getId())) {
             AppDownloadTask.DownloadInfo downloadInfo = mTasks.get(app.getId()).getDownloadInfo();
-            appItemView.buttonAction.setText(String.format("%d%%", (int) (downloadInfo.progress * 100)));
+            appItemView.buttonAction
+                .setText(String.format("%d%%", (int) (downloadInfo.progress * 100)));
         }
     }
 

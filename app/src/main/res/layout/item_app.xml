@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/ff.padding.large"
     android:paddingStart="@dimen/ff.padding.large"
+    android:paddingLeft="@dimen/ff.padding.large"
     android:background="?attr/selectableItemBackground"
     tools:ignore="RtlSymmetry">
 
@@ -15,88 +15,97 @@
         android:layout_height="@dimen/ff.app.icon.size"
         android:layout_marginTop="@dimen/ff.padding.large"
         android:layout_marginBottom="@dimen/ff.padding.large"
-        android:layout_marginRight="@dimen/ff.margin.normal"
         android:layout_marginEnd="@dimen/ff.margin.normal"
-        tools:src="@mipmap/ic_launcher"
-        android:contentDescription="@string/ff.app.name"/>
+        android:layout_marginRight="@dimen/ff.margin.normal"
+        android:contentDescription="@string/ff.app.name"
+        tools:src="@mipmap/ic_launcher"/>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/ff.padding.large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/image_view_icon"
+        android:layout_marginTop="@dimen/ff.padding.large"
+        android:layout_centerVertical="true"
         android:layout_toEndOf="@id/image_view_icon"
         android:layout_toLeftOf="@+id/button_action"
+        android:layout_toRightOf="@id/image_view_icon"
         android:layout_toStartOf="@+id/button_action"
-        android:layout_centerVertical="true"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/text_view_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/ff.textSize.title"
             android:textColor="@color/ff.textColor.title"
-            tools:text="fir.flight"
-            />
+            android:textSize="@dimen/ff.textSize.title"
+            tools:text="fir.flight"/>
+
 
         <TextView
             android:id="@+id/text_view_local_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ff.padding.small"
-            android:textSize="@dimen/ff.textSize.tips"
             android:textColor="@color/ff.textColor.tips"
-            tools:text="v2.0.1(160110)"
+            android:textSize="@dimen/ff.textSize.tips"
             android:visibility="gone"
-            tools:visibility="visible"
-            />
+            tools:text="v2.0.1(160110)"
+            tools:visibility="visible"/>
 
-        <TextView
-            android:id="@+id/text_view_version"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ff.padding.small"
-            android:textSize="@dimen/ff.textSize.tips"
-            android:textColor="@color/ff.textColor.tips"
-            tools:text="v2.1.1(160231)"
-            />
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/text_view_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ff.padding.small"
+                android:textColor="@color/ff.textColor.tips"
+                android:textSize="@dimen/ff.textSize.tips"
+                tools:text="v2.1.1(160231)"/>
+
+            <TextView
+                android:id="@+id/text_view_remote_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ff.padding.small"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/ff.textColor.tips"
+                android:textSize="@dimen/ff.textSize.tips"/>
+
+        </LinearLayout>
         <TextView
             android:id="@+id/text_view_bundle_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ff.padding.small"
-            android:textSize="@dimen/ff.textSize.tips"
             android:textColor="@color/ff.textColor.tips"
-            tools:text="io.github.ryanhoo.firFlight"
-            />
+            android:textSize="@dimen/ff.textSize.tips"
+            tools:text="io.github.ryanhoo.firFlight"/>
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/layout_ios_badge"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:visibility="gone"
-        tools:visibility="visible"
-        >
+        tools:visibility="visible">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_app_item_badge"
-            />
+            android:background="@drawable/bg_app_item_badge"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_ios"
             android:layout_margin="@dimen/ff.padding.normal"
-            />
+            android:layout_gravity="end"
+            android:src="@drawable/ic_ios"/>
     </FrameLayout>
 
 
@@ -106,11 +115,10 @@
         android:layout_width="60dp"
         android:layout_marginLeft="@dimen/ff.padding.small"
         android:layout_marginRight="@dimen/ff.padding.large"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        tools:text="@string/ff.apps.install"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         tools:ignore="RtlHardcoded"
-        />
+        tools:text="@string/ff.apps.install"/>
 
 </RelativeLayout>

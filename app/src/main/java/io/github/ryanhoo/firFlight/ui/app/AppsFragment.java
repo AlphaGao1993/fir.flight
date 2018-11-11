@@ -26,18 +26,15 @@ import io.github.ryanhoo.firFlight.ui.helper.SwipeRefreshHelper;
 import io.github.ryanhoo.firFlight.util.AppUtils;
 import io.github.ryanhoo.firFlight.util.IntentUtils;
 import io.github.ryanhoo.firFlight.webview.WebViewHelper;
-
 import java.util.List;
 
 /**
- * Created with Android Studio.
- * User: ryan.hoo.j@gmail.com
- * Date: 3/19/16
- * Time: 12:29 AM
- * Desc: AppListFragment
+ * Created with Android Studio. User: ryan.hoo.j@gmail.com Date: 3/19/16 Time: 12:29 AM Desc:
+ * AppListFragment
  */
-public class AppsFragment extends BaseFragment
-        implements AppContract.View, SwipeRefreshLayout.OnRefreshListener, AppAdapter.AppItemClickListener {
+public class AppsFragment extends BaseFragment implements AppContract.View,
+    SwipeRefreshLayout.OnRefreshListener,
+    AppAdapter.AppItemClickListener {
 
     private static final String TAG = "AppListFragment";
 
@@ -55,7 +52,8 @@ public class AppsFragment extends BaseFragment
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+        @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_app_list, container, false);
     }
 
@@ -72,9 +70,9 @@ public class AppsFragment extends BaseFragment
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DefaultItemDecoration(
-                ContextCompat.getColor(getContext(), R.color.ff_white),
-                ContextCompat.getColor(getContext(), R.color.ff_divider),
-                getContext().getResources().getDimensionPixelSize(R.dimen.ff_padding_large)
+            ContextCompat.getColor(getContext(), R.color.ff_white),
+            ContextCompat.getColor(getContext(), R.color.ff_divider),
+            getContext().getResources().getDimensionPixelSize(R.dimen.ff_padding_large)
         ));
 
         new AppPresenter(AppRepository.getInstance(), this).subscribe();
@@ -153,7 +151,8 @@ public class AppsFragment extends BaseFragment
     @Override
     public void onItemClick(int position) {
         App app = mAdapter.getItem(position);
-        WebViewHelper.openUrl(getActivity(), app.getName(), AppUtils.getAppUrlByShort(app.getShortUrl()));
+        WebViewHelper
+            .openUrl(getActivity(), app.getName(), AppUtils.getAppUrlByShort(app.getShortUrl()));
     }
 
     @Override
@@ -175,15 +174,21 @@ public class AppsFragment extends BaseFragment
         int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
         int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
 
-        if (position < firstVisibleItem || position > lastVisibleItem) return;
+        if (position < firstVisibleItem || position > lastVisibleItem) {
+            return;
+        }
 
         // Get the view holder by position
         View itemView = layoutManager.getChildAt(position - firstVisibleItem);
 
         if (itemView instanceof AppItemView) {
             AppItemView appView = (AppItemView) itemView;
-            if (appView.appInfo == null) return;
-            if (appView.appInfo.app == null || !appId.equals(appView.appInfo.app.getId())) return;
+            if (appView.appInfo == null) {
+                return;
+            }
+            if (appView.appInfo.app == null || !appId.equals(appView.appInfo.app.getId())) {
+                return;
+            }
 
             mAdapter.onButtonProgress(appView);
         }
