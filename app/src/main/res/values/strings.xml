@@ -28,7 +28,7 @@
 
     <string-array name="ff_main_tab_titles">
         <item>@string/ff.main.tab.apps</item>
-        <item>@string/ff.main.tab.messages</item>
+        <!--<item>@string/ff.main.tab.messages</item>-->
         <item>@string/ff.main.tab.profile</item>
     </string-array>
 

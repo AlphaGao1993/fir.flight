@@ -52,8 +52,8 @@ public class MainActivity extends BaseActivity {
         final String[] tabTitles = getResources().getStringArray(R.array.ff_main_tab_titles);
         final BaseFragment[] fragments = new BaseFragment[tabTitles.length];
         fragments[0] = new AppsFragment();
-        fragments[1] = new MessagesFragment();
-        fragments[2] = new ProfileFragment();
+        //fragments[1] = new MessagesFragment();
+        fragments[1] = new ProfileFragment();
 
         MainTabAdapter adapter = new MainTabAdapter(getSupportFragmentManager(), tabTitles, fragments);
         viewPager.setAdapter(adapter);
