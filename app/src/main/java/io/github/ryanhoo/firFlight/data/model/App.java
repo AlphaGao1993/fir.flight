@@ -2,16 +2,12 @@ package io.github.ryanhoo.firFlight.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.Date;
 
 /**
- * Created with Android Studio.
- * User: ryan.hoo.j@gmail.com
- * Date: 3/16/16
- * Time: 11:07 PM
- * Desc: App
+ * Created with Android Studio. User: ryan.hoo.j@gmail.com Date: 3/16/16 Time: 11:07 PM Desc: App
  */
 /*
 {
@@ -27,7 +23,8 @@ import java.util.Date;
     "custom_market_url": "",
     "has_combo": false,
     "created_at": 1447921156,
-    "icon_url": "http://firicon.fir.im/ad11104bab7047cc40760c2bbcfcb3e154071cd8?t=1458042185.912362",
+    "icon_url": "http://firicon.fir
+    .im/ad11104bab7047cc40760c2bbcfcb3e154071cd8?t=1458042185.912362",
     "master_release": {
       "version": "2.6.5",
       "build": "16031502",

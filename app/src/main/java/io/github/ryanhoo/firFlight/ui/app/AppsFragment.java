@@ -26,6 +26,9 @@ import io.github.ryanhoo.firFlight.ui.helper.SwipeRefreshHelper;
 import io.github.ryanhoo.firFlight.util.AppUtils;
 import io.github.ryanhoo.firFlight.util.IntentUtils;
 import io.github.ryanhoo.firFlight.webview.WebViewHelper;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -92,6 +95,18 @@ public class AppsFragment extends BaseFragment implements AppContract.View,
 
     @Override
     public void onAppsLoaded(List<App> apps) {
+        Collections.sort(apps, new Comparator<App>() {
+            @Override
+            public int compare(App o1, App o2) {
+                Date date1 = o1.getUpdatedAt();
+                Date date2 = o2.getUpdatedAt();
+                if (date1 == null || date2 == null) {
+                    return -1;
+                } else {
+                    return date2.compareTo(date1);
+                }
+            }
+        });
         mAdapter.setData(apps);
         mAdapter.notifyDataSetChanged();
     }
