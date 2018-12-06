@@ -71,10 +71,10 @@ ext {
             stetho_okhttp         : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
             stetho_jsconsole      : "com.facebook.stetho:stetho-js-rhino:$stethoVersion",
             calligraphy           : 'uk.co.chrisjenx:calligraphy:2.2.0'
-    ]
+    ] 
 
     // classpath
     paths = [
-            fabricClassPath: 'io.fabric.tools:gradle:1.+'
+            fabricClassPath: 'io.fabric.tools:gradle:1.25.4'
     ]
 }

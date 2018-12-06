@@ -1,8 +1,13 @@
 package io.github.ryanhoo.firFlight.ui.app;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+import io.github.ryanhoo.firFlight.FlightApplication;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,6 +40,7 @@ import rx.Subscriber;
         return Observable.create(new Observable.OnSubscribe<DownloadInfo>() {
             @Override
             public void call(Subscriber<? super DownloadInfo> subscriber) {
+
                 // Initiate download progress
                 subscriber.onNext(mDownloadInfo);
                 HttpURLConnection urlConnection = null;
@@ -53,6 +59,16 @@ import rx.Subscriber;
                     File apkFile = new File(fileDir, fileName);
                     if (!apkFile.exists()) {
                         apkFile.createNewFile();
+                    } else {
+                        Boolean hasDownloadApkFile = isApkDownloaded(apkFile);
+                        if (hasDownloadApkFile) {
+                            mDownloadInfo.apkFile = apkFile;
+                            mDownloadInfo.progress = 1F;
+                            urlConnection.disconnect();
+                            subscriber.onNext(mDownloadInfo);
+                            subscriber.onCompleted();
+                            return;
+                        }
                     }
                     mDownloadInfo.apkFile = apkFile;
                     outputStream = new BufferedOutputStream(
@@ -87,6 +103,25 @@ import rx.Subscriber;
                 subscriber.onCompleted();
             }
         });
+    }
+
+    @NonNull
+    private Boolean isApkDownloaded(File apkFile) throws NameNotFoundException {
+        PackageManager pm = FlightApplication.getInstance().getPackageManager();
+        PackageInfo packInfo = pm.getPackageArchiveInfo(apkFile.getPath(),
+            PackageManager.GET_ACTIVITIES);
+
+        String currentVersionName;
+        if (packInfo.installLocation != -1) {
+            currentVersionName = FlightApplication.getInstance()
+                .getPackageManager()
+                .getPackageInfo(packInfo.packageName, 0)
+                .versionName;
+        } else {
+            currentVersionName = "";
+        }
+        String version = packInfo.versionName;
+        return !currentVersionName.equals(version);
     }
 
     private String getFileName(HttpURLConnection urlConnection) {

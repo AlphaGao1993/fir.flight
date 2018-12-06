@@ -47,7 +47,6 @@ public class AppRepository implements AppContract {
 
     @Override
     public Observable<List<App>> apps(boolean forceUpdate) {
-        Observable<List<App>> local = mLocalDataSource.apps();
         Observable<List<App>> remote = mRemoteDataSource.apps()
                 .doOnNext(new Action1<List<App>>() {
                     @Override
@@ -59,7 +58,7 @@ public class AppRepository implements AppContract {
         if (forceUpdate) {
             return remote;
         }
-        return Observable.concat(local.first(), remote);
+        return remote;
     }
 
     @Override

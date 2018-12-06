@@ -78,7 +78,7 @@ public class AppsFragment extends BaseFragment implements AppContract.View,
             getContext().getResources().getDimensionPixelSize(R.dimen.ff_padding_large)
         ));
 
-        new AppPresenter(AppRepository.getInstance(), this).subscribe();
+        new AppPresenter2(AppRepository.getInstance(), this).subscribe();
 
         // Listen for app install/update/remove broadcasts
         registerBroadcast();
