@@ -3,13 +3,15 @@ package io.github.ryanhoo.firFlight.ui.app;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v4.content.FileProvider;
+
+import java.io.File;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import io.github.ryanhoo.firFlight.data.model.App;
 import io.github.ryanhoo.firFlight.data.model.AppInstallInfo;
 import io.github.ryanhoo.firFlight.data.source.AppRepository;
 import io.github.ryanhoo.firFlight.network.NetworkSubscriber;
-import java.io.File;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -24,7 +26,7 @@ import rx.subscriptions.CompositeSubscription;
 /* package */ class AppPresenter implements AppContract.Presenter {
 
     private static File DOWNLOAD_DIR = Environment
-        .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
     private AppRepository mRepository;
     private AppContract.View mView;
@@ -52,24 +54,24 @@ import rx.subscriptions.CompositeSubscription;
     @Override
     public void loadApps() {
         Subscription subscription = mRepository.apps()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread(), true)
-            .subscribe(new NetworkSubscriber<List<App>>(mView.getContext()) {
-                @Override
-                public void onStart() {
-                    mView.onLoadAppStarted();
-                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread(), true)
+                .subscribe(new NetworkSubscriber<List<App>>(mView.getContext()) {
+                    @Override
+                    public void onStart() {
+                        mView.onLoadAppStarted();
+                    }
 
-                @Override
-                public void onNext(List<App> apps) {
-                    mView.onAppsLoaded(apps);
-                }
+                    @Override
+                    public void onNext(List<App> apps) {
+                        mView.onAppsLoaded(apps);
+                    }
 
-                @Override
-                public void onUnsubscribe() {
-                    mView.onLoadAppCompleted();
-                }
-            });
+                    @Override
+                    public void onUnsubscribe() {
+                        mView.onLoadAppCompleted();
+                    }
+                });
         mSubscriptions.add(subscription);
     }
 
@@ -78,41 +80,41 @@ import rx.subscriptions.CompositeSubscription;
         final AppInfo appInfo = itemView.appInfo;
         final App app = appInfo.app;
         Subscription subscription = mRepository.appInstallInfo(app.getId())
-            .flatMap(new Func1<AppInstallInfo, Observable<AppDownloadTask.DownloadInfo>>() {
-                @Override
-                public Observable<AppDownloadTask.DownloadInfo> call(AppInstallInfo installInfo) {
-                    AppDownloadTask task = new AppDownloadTask(installInfo.getInstallUrl());
-                    mView.addTask(app.getId(), task);
-                    return task.downloadApk(DOWNLOAD_DIR);
-                }
-            })
-            // In case back pressure exception, only emit 1 onNext event in 16ms(screen drawing 
-            // interval)
-            .debounce(16, TimeUnit.MILLISECONDS)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new NetworkSubscriber<AppDownloadTask.DownloadInfo>(mView.getContext()) {
-                @Override
-                public void onStart() {
-                    itemView.buttonAction.setEnabled(false);
-                }
-
-                @Override
-                public void onNext(AppDownloadTask.DownloadInfo info) {
-                    mView.updateAppInfo(app.getId(), position);
-                    if (info.progress == 1f) {
-                        Uri apkUri = FileProvider.getUriForFile(mView.getContext(),
-                            "io.github.ryanhoo.firFlight.fileProvider", info.apkFile);
-                        mView.installApk(apkUri);
+                .flatMap(new Func1<AppInstallInfo, Observable<AppDownloadTask.DownloadInfo>>() {
+                    @Override
+                    public Observable<AppDownloadTask.DownloadInfo> call(AppInstallInfo installInfo) {
+                        AppDownloadTask task = new AppDownloadTask(installInfo.getInstallUrl());
+                        mView.addTask(app.getId(), task);
+                        return task.downloadApk(DOWNLOAD_DIR);
                     }
-                }
+                })
+                // In case back pressure exception, only emit 1 onNext event in 16ms(screen drawing 
+                // interval)
+                .debounce(16, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new NetworkSubscriber<AppDownloadTask.DownloadInfo>(mView.getContext()) {
+                    @Override
+                    public void onStart() {
+                        itemView.buttonAction.setEnabled(false);
+                    }
 
-                @Override
-                public void onUnsubscribe() {
-                    mView.removeTask(app.getId());
-                    itemView.buttonAction.setEnabled(true);
-                }
-            });
+                    @Override
+                    public void onNext(AppDownloadTask.DownloadInfo info) {
+                        mView.updateAppInfo(app.getId(), position);
+                        if (info.progress == 1f) {
+                            Uri apkUri = FileProvider.getUriForFile(mView.getContext(),
+                                    "io.github.ryanhoo.firFlight.fileProvider", info.apkFile);
+                            mView.installApk(apkUri);
+                        }
+                    }
+
+                    @Override
+                    public void onUnsubscribe() {
+                        mView.removeTask(app.getId());
+                        itemView.buttonAction.setEnabled(true);
+                    }
+                });
         mSubscriptions.add(subscription);
     }
 }

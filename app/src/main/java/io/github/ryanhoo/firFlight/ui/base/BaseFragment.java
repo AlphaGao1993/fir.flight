@@ -36,4 +36,8 @@ public abstract class BaseFragment extends Fragment {
         }
         mSubscriptions.add(subscription);
     }
+
+    protected Subscription subscribeEvents() {
+        return null;
+    }
 }

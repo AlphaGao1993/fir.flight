@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
-import io.github.ryanhoo.firFlight.FlightApplication;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import io.github.ryanhoo.firFlight.FlightApplication;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -72,7 +74,7 @@ import rx.Subscriber;
                     }
                     mDownloadInfo.apkFile = apkFile;
                     outputStream = new BufferedOutputStream(
-                        new FileOutputStream(mDownloadInfo.apkFile));
+                            new FileOutputStream(mDownloadInfo.apkFile));
                     Log.d(TAG, "Downloading apk into " + mDownloadInfo.apkFile);
                     byte[] buffer = new byte[BUFFER_SIZE];
                     int length;
@@ -82,7 +84,7 @@ import rx.Subscriber;
                         outputStream.write(buffer, 0, length);
                         totalLength += length;
                         mDownloadInfo.progress =
-                            (totalLength == 0f) ? 0f : (float) totalLength / (float) contentLength;
+                                (totalLength == 0f) ? 0f : (float) totalLength / (float) contentLength;
                         subscriber.onNext(mDownloadInfo);
                     }
                 } catch (Exception e) {
@@ -109,14 +111,14 @@ import rx.Subscriber;
     private Boolean isApkDownloaded(File apkFile) throws NameNotFoundException {
         PackageManager pm = FlightApplication.getInstance().getPackageManager();
         PackageInfo packInfo = pm.getPackageArchiveInfo(apkFile.getPath(),
-            PackageManager.GET_ACTIVITIES);
+                PackageManager.GET_ACTIVITIES);
 
         String currentVersionName;
         if (packInfo.installLocation != -1) {
             currentVersionName = FlightApplication.getInstance()
-                .getPackageManager()
-                .getPackageInfo(packInfo.packageName, 0)
-                .versionName;
+                    .getPackageManager()
+                    .getPackageInfo(packInfo.packageName, 0)
+                    .versionName;
         } else {
             currentVersionName = "";
         }
@@ -140,7 +142,7 @@ import rx.Subscriber;
                 int index = attachment.indexOf(delimiter);
                 if (index != -1) {
                     fileName = attachment
-                        .substring(index + delimiter.length(), attachment.length() - 1);
+                            .substring(index + delimiter.length(), attachment.length() - 1);
                 }
                 if (TextUtils.isEmpty(fileName)) {
                     fileName = uri.getLastPathSegment();

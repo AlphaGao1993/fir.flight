@@ -1,21 +1,33 @@
 package io.github.ryanhoo.firFlight.ui.profile;
 
-import android.content.*;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import io.github.ryanhoo.firFlight.R;
 import io.github.ryanhoo.firFlight.account.UserSession;
 import io.github.ryanhoo.firFlight.data.model.Token;
@@ -66,7 +78,7 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
+        addSubscription(subscribeEvents());
         mProgressDialog = FlightDialog.defaultLoadingDialog(getActivity());
 
         // Init
@@ -137,17 +149,20 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
     }
 
     private void onSignOut() {
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.ff_dialog_sign_out_title)
-                .setMessage(R.string.ff_dialog_sign_out_message)
-                .setNegativeButton(R.string.ff_no, null)
-                .setPositiveButton(R.string.ff_yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        UserSession.getInstance().signOut();
-                    }
-                })
-                .show();
+        FragmentActivity activity = getActivity();
+        if (activity != null) {
+            new AlertDialog.Builder(activity)
+                    .setTitle(R.string.ff_dialog_sign_out_title)
+                    .setMessage(R.string.ff_dialog_sign_out_message)
+                    .setNegativeButton(R.string.ff_no, null)
+                    .setPositiveButton(R.string.ff_yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            UserSession.getInstance().signOut();
+                        }
+                    })
+                    .show();
+        }
     }
 
     // OnClick Events
