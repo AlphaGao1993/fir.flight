@@ -164,8 +164,8 @@ dependencies {
 
     implementation libs.sqlbrite
 
-    implementation(libs.crashlytics) { transitive = true; }
-    implementation(libs.answers) { transitive = true; }
+    implementation(libs.crashlytics) { transitive = true }
+    implementation(libs.answers) { transitive = true }
 
     implementation libs.stetho
     implementation libs.stetho_okhttp

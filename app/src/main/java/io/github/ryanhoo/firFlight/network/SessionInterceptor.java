@@ -1,14 +1,15 @@
 package io.github.ryanhoo.firFlight.network;
 
 import android.util.Log;
+
+import java.io.IOException;
+
 import io.github.ryanhoo.firFlight.account.UserSession;
 import io.github.ryanhoo.firFlight.data.model.Token;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import java.io.IOException;
 
 /**
  * Created with Android Studio.
@@ -39,7 +40,8 @@ public class SessionInterceptor implements Interceptor {
             HttpUrl httpUrl = request.url();
             boolean isApiTokenRequired = false;
             try {
-                isApiTokenRequired = Boolean.parseBoolean(httpUrl.queryParameter("requireApiToken"));
+//                isApiTokenRequired = Boolean.parseBoolean(httpUrl.queryParameter("requireApiToken"));
+                isApiTokenRequired = true;
             } catch (Exception ignore) {
             }
             if (isApiTokenRequired) {
