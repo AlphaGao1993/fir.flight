@@ -40,8 +40,7 @@ public class SessionInterceptor implements Interceptor {
             HttpUrl httpUrl = request.url();
             boolean isApiTokenRequired = false;
             try {
-//                isApiTokenRequired = Boolean.parseBoolean(httpUrl.queryParameter("requireApiToken"));
-                isApiTokenRequired = true;
+                isApiTokenRequired = Boolean.parseBoolean(httpUrl.queryParameter("requireApiToken"));
             } catch (Exception ignore) {
             }
             if (isApiTokenRequired) {
